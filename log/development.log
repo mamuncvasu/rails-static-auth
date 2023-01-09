@@ -1,0 +1,226 @@
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (4.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20230109134336)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "password_digest" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230109134336"]]
+  [1m[36mTRANSACTION (5.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2023-01-09 13:43:48.267096"], ["updated_at", "2023-01-09 13:43:48.267096"]]
+  [1m[36mTRANSACTION (3.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2023-01-09 19:49:00 +0600
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StaticPageController#index as HTML
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.0ms | Allocations: 6273)
+
+
+  
+LoadError (cannot load such file -- bcrypt):
+  
+app/models/user.rb:3:in `<class:User>'
+app/models/user.rb:1:in `<main>'
+app/controllers/application_controller.rb:5:in `authorize'
+Started GET "/" for 127.0.0.1 at 2023-01-09 19:50:09 +0600
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StaticPageController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `authorize'
+Redirected to http://localhost:5000/login
+Filter chain halted as :authorize rendered or redirected
+Completed 302 Found in 17ms (ActiveRecord: 0.6ms | Allocations: 10479)
+
+
+Started GET "/login" for 127.0.0.1 at 2023-01-09 19:50:09 +0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 2.6ms | Allocations: 2843)
+  Rendered layout layouts/application.html.erb (Duration: 259.4ms | Allocations: 94925)
+Completed 200 OK in 266ms (Views: 262.2ms | ActiveRecord: 0.0ms | Allocations: 98244)
+
+
+Started GET "/" for 127.0.0.1 at 2023-01-09 19:50:15 +0600
+Processing by StaticPageController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `authorize'
+Redirected to http://localhost:5000/login
+Filter chain halted as :authorize rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.1ms | Allocations: 1952)
+
+
+Started GET "/login" for 127.0.0.1 at 2023-01-09 19:50:15 +0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.9ms | Allocations: 1498)
+  Rendered layout layouts/application.html.erb (Duration: 5.4ms | Allocations: 3680)
+Completed 200 OK in 7ms (Views: 6.1ms | ActiveRecord: 0.0ms | Allocations: 4025)
+
+
+Started GET "/signup" for 127.0.0.1 at 2023-01-09 19:50:31 +0600
+  
+ActionController::RoutingError (No route matches [GET] "/signup"):
+  
+Started GET "/users" for 127.0.0.1 at 2023-01-09 19:52:05 +0600
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `authorize'
+Redirected to http://localhost:5000/login
+Filter chain halted as :authorize rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.1ms | Allocations: 2112)
+
+
+Started GET "/login" for 127.0.0.1 at 2023-01-09 19:52:05 +0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 3.3ms | Allocations: 1543)
+  Rendered layout layouts/application.html.erb (Duration: 9.4ms | Allocations: 3835)
+Completed 200 OK in 11ms (Views: 10.4ms | ActiveRecord: 0.0ms | Allocations: 4187)
+
+
+Started GET "/users/new" for 127.0.0.1 at 2023-01-09 19:52:15 +0600
+Processing by UsersController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `authorize'
+Redirected to http://localhost:5000/login
+Filter chain halted as :authorize rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.1ms | Allocations: 1817)
+
+
+Started GET "/login" for 127.0.0.1 at 2023-01-09 19:52:15 +0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 2.6ms | Allocations: 1490)
+  Rendered layout layouts/application.html.erb (Duration: 7.0ms | Allocations: 3671)
+Completed 200 OK in 8ms (Views: 7.8ms | ActiveRecord: 0.0ms | Allocations: 3981)
+
+
+Started GET "/users" for 127.0.0.1 at 2023-01-09 19:53:48 +0600
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `authorize'
+Redirected to http://localhost:5000/login
+Filter chain halted as :authorize rendered or redirected
+Completed 302 Found in 6ms (ActiveRecord: 0.6ms | Allocations: 3681)
+
+
+Started GET "/login" for 127.0.0.1 at 2023-01-09 19:53:48 +0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.8ms | Allocations: 1976)
+  Rendered layout layouts/application.html.erb (Duration: 13.4ms | Allocations: 15689)
+Completed 200 OK in 16ms (Views: 15.3ms | ActiveRecord: 0.0ms | Allocations: 16592)
+
+
+Started GET "/users/new" for 127.0.0.1 at 2023-01-09 19:53:54 +0600
+Processing by UsersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/_form.html.erb (Duration: 13.9ms | Allocations: 6917)
+  Rendered users/new.html.erb within layouts/application (Duration: 14.9ms | Allocations: 7303)
+  Rendered layout layouts/application.html.erb (Duration: 18.3ms | Allocations: 9693)
+Completed 200 OK in 35ms (Views: 19.4ms | ActiveRecord: 0.4ms | Allocations: 26088)
+
+
+Started POST "/users" for 127.0.0.1 at 2023-01-09 19:54:05 +0600
+Processing by UsersController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"gmamuns@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create User"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:27:in `block in create'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "gmamuns@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:27:in `block in create'
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "gmamuns@gmail.com"], ["password_digest", "[FILTERED]"], ["created_at", "2023-01-09 13:54:05.896800"], ["updated_at", "2023-01-09 13:54:05.896800"]]
+  ↳ app/controllers/users_controller.rb:27:in `block in create'
+  [1m[36mTRANSACTION (4.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:27:in `block in create'
+Redirected to http://localhost:5000/users
+Completed 302 Found in 286ms (ActiveRecord: 4.7ms | Allocations: 6155)
+
+
+Started GET "/users" for 127.0.0.1 at 2023-01-09 19:54:05 +0600
+Processing by UsersController#index as TURBO_STREAM
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `authorize'
+Redirected to http://localhost:5000/login
+Filter chain halted as :authorize rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.1ms | Allocations: 1815)
+
+
+Started GET "/login" for 127.0.0.1 at 2023-01-09 19:54:05 +0600
+Processing by SessionsController#new as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.3ms | Allocations: 1534)
+  Rendered layout layouts/application.html.erb (Duration: 3.7ms | Allocations: 3823)
+Completed 200 OK in 5ms (Views: 4.1ms | ActiveRecord: 0.0ms | Allocations: 4225)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-01-09 19:54:17 +0600
+Processing by SessionsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "email"=>"gmamuns@gmail.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "gmamuns@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+Redirected to http://localhost:5000/admin
+Completed 302 Found in 286ms (ActiveRecord: 0.2ms | Allocations: 1978)
+
+
+Started GET "/admin" for 127.0.0.1 at 2023-01-09 19:54:17 +0600
+Processing by StaticPageController#admin as TURBO_STREAM
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `authorize'
+  Rendering layout layouts/application.html.erb
+  Rendering static_page/admin.html.erb within layouts/application
+  Rendered static_page/admin.html.erb within layouts/application (Duration: 0.9ms | Allocations: 138)
+  Rendered layout layouts/application.html.erb (Duration: 4.7ms | Allocations: 2854)
+Completed 200 OK in 9ms (Views: 6.2ms | ActiveRecord: 0.2ms | Allocations: 6125)
+
+
+Started DELETE "/logout" for 127.0.0.1 at 2023-01-09 19:55:51 +0600
+  
+ArgumentError ('Users' is not a supported controller name. This can lead to potential routing problems. See https://guides.rubyonrails.org/routing.html#specifying-a-controller-to-use):
+  
+config/routes.rb:2:in `block in <main>'
+config/routes.rb:1:in `<main>'
+Started GET "/admin" for 127.0.0.1 at 2023-01-09 19:56:07 +0600
+Processing by StaticPageController#admin as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `authorize'
+  Rendering layout layouts/application.html.erb
+  Rendering static_page/admin.html.erb within layouts/application
+  Rendered static_page/admin.html.erb within layouts/application (Duration: 0.0ms | Allocations: 12)
+  Rendered layout layouts/application.html.erb (Duration: 13.6ms | Allocations: 14080)
+Completed 200 OK in 22ms (Views: 14.8ms | ActiveRecord: 0.7ms | Allocations: 20015)
+
+
+Started DELETE "/logout" for 127.0.0.1 at 2023-01-09 19:56:09 +0600
+Processing by SessionsController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Redirected to http://localhost:5000/login
+Completed 302 Found in 11ms (ActiveRecord: 0.0ms | Allocations: 1481)
+
+
+Started GET "/login" for 127.0.0.1 at 2023-01-09 19:56:09 +0600
+Processing by SessionsController#new as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.9ms | Allocations: 1990)
+  Rendered layout layouts/application.html.erb (Duration: 5.8ms | Allocations: 4610)
+Completed 200 OK in 8ms (Views: 7.1ms | ActiveRecord: 0.0ms | Allocations: 5434)
+
+
+Started GET "/signup" for 127.0.0.1 at 2023-01-09 19:56:23 +0600
+Processing by UsersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/_form.html.erb (Duration: 3.5ms | Allocations: 2379)
+  Rendered users/new.html.erb within layouts/application (Duration: 3.9ms | Allocations: 2488)
+  Rendered layout layouts/application.html.erb (Duration: 8.2ms | Allocations: 5095)
+Completed 200 OK in 11ms (Views: 10.0ms | ActiveRecord: 0.0ms | Allocations: 6060)
+
+

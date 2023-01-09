@@ -1,0 +1,20 @@
+<section>
+<% if flash[:alert] %>
+  <%=flash[:alert] %>
+<% end %>
+
+<%= form_tag do %>
+  <h1>Please Log In</h1>
+  <div>
+    <%=label_tag :email, 'Email: ' %>
+    <%=text_field_tag :email, params[:email] %>
+  </div>
+  <div>
+    <%=label_tag :password, 'Password: ' %>
+    <%=password_field_tag :password, params[:name] %>
+  </div>
+  <div>
+    <%=submit_tag "Login" %>
+  </div>
+<% end %>
+</section>
