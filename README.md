@@ -1,5 +1,6 @@
 Source : Agile Web Development With Rails 6 Chapter-15
-----------------------------------------------------------------
+==========================================================
+```
 rails new static_auth && cd static_auth
 rails g controller static_page index admin
 rails g controller Sessions new create destroy
@@ -8,16 +9,19 @@ rails db:migrate
 
 edit: Gemfile>> gem "bcrypt", "~> 3.1.7"
 bundle install
+```
 
 Model/User
 -------------------------------------
+```
 class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   has_secure_password
 end
-
+```
 routes: >>
 ----------------------------------------
+```
 Rails.application.routes.draw do
   get 'signup', to:'users#new'
   get 'login', to:'sessions#new'
@@ -30,9 +34,11 @@ Rails.application.routes.draw do
   get 'admin', to: 'static_page#admin'
   get 'user', to: 'static_page#user'
 end
+```
 -------------------------------------------------------------------
 SessionsController
 -------------------------------------------------------------------
+```
 class SessionsController < ApplicationController
   skip_before_action :authorize
   def new
@@ -54,10 +60,11 @@ class SessionsController < ApplicationController
     redirect_to login_path, notice: 'Logged Out'
   end
 end
-
+```
 
 views/sessions/new   and remove : (destroy and create) view
 ------------------------------------------------------------------------
+```
 <section>
 <% if flash[:alert] %>
   <%=flash[:alert] %>
@@ -78,11 +85,13 @@ views/sessions/new   and remove : (destroy and create) view
   </div>
 <% end %>
 </section>
+```
 ------------------------------------------------------------------------------
 Edit >> UserController
 -------------------------------------------------------------------------------
+```
 skip_before_action :authorize, only: [:new, :create]
-
+#New Method code same
 def create
     @user = User.new(user_params)
 
@@ -105,9 +114,11 @@ def create
       end
     end
   end
+  ```
 -----------------------------------------------------------------------------------------------
 ApplicationController
 -----------------------------------------------------------------------------------------------
+```
 class ApplicationController < ActionController::Base
   before_action :authorize
   private
@@ -117,13 +128,18 @@ class ApplicationController < ActionController::Base
     end
   end
 end
+```
 ------------------------------------------------------------------------------------------------
 
 layouts/application
 ------------------------------------------------------------------------------
+```
 <% if session[:user_id] %>
     <%= button_to 'Log Out', logout_path, method: :delete %>
 <% end %>
-
+```
+===================================================================================================
+```
 localhost:3000/register
 localhost:3000/login
+```
