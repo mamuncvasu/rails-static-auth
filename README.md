@@ -202,12 +202,20 @@ end
 -----------------------------------------------------------------------------------------------
 edit: view/users/_form
 ------------------------------------------------------------------------------------------------
+```
+<div>
+    <%= form.label :email, style: "display: block" %>
+    <%= form.email_field :email %>
+  </div>
+......
+.......
  <div>
     <%= form.label :role, style: "display: block" %>
     <%#= form.text_field :role %>
     <%= form.select :role, [["SuperAdmin", "1"], ["Admin", "2"], ["user", "3"]] %>
 
   </div>
+```
 ----------------------------------------------------------------------------------------------
 
 
@@ -256,6 +264,15 @@ layouts/application
 </html>
 ```
 ===================================================================================================
+
+edit view/sessions/new
+===============================================================================
+```
+ <%=password_field_tag :password, params[:name] %>
+```
+
+Do Before 1st Use
+====================================================================================
 ```
 Comment Out UserController >>  skip_before_action :authorize, only: [:new, :create]
 for create 1st SuperAdmin  >>localhost:3000/signup
