@@ -82,9 +82,13 @@ layout/session.html.erb   / ta na hole loin page e user data dekhay
   </head>
 
   <body>
+    <div class="center">
+      <br><br><br><br>
       <%= yield %>
+    </div>
   </body>
 </html>
+
 ```
 --------------------------------------------------------------------------
 
