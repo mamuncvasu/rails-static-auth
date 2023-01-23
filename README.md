@@ -284,3 +284,9 @@ Comment Out UserController Back >> #skip_before_action :authorize, only: [:new, 
 Now only SuperAdmin can create User
 localhost:3000/login
 ```
+Or, Manually Add User
+====================================================================================
+````
+User.create(email: 'admin@gmail.com', password: '123', password_confirmation: '123')
+````
+
